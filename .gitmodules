@@ -1,0 +1,3 @@
+[submodule "connect-auth"]
+	path = connect-auth
+	url = https://github.com/ciaranj/connect-auth.git
