@@ -1,17 +1,11 @@
-express = require('express')
-fs = require('fs')
-oAuthStuff = require('./oAuthStuff')
-myApp = require('./myApp')
-
-#options = {
-#  ca:   fs.readFileSync('../sub.class1.server.ca.pem.cer'),
-#  key:  fs.readFileSync('../ssl.key'),
-#  cert: fs.readFileSync('../ssl.crt')
-#}
+express = require 'express'
+routing = require './routing' 
+auth = require './auth'
+conf = require './conf' 
 
 app = express.createServer()
 
-oAuthStuff.setup(express,app)
-myApp.setup(express,app)
+routing.setup express, app 
+auth.setup  app, conf
 
-app.listen(8080)
+app.listen 3000 

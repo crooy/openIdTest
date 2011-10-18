@@ -1,16 +1,11 @@
 exports.setup = (express,app) ->
-
-    # Setup Template Engine
   app.register '.coffee', require('coffeekup')
   app.set 'view engine', 'coffee'
-
-  # Setup Static Files
   app.use express.static(__dirname + '/public')
-
-  # Setup post body parsing
-  app.use express.bodyParser()
-
-  # App Routes
+  app.use express.logger()
+  #app.use express.bodyParser()
+  #app.use express.cookieParser()
+  #app.use express.session({secret:'fsdfwer'})
   app.get '/', (req, res) ->
       res.render 'index'
 
