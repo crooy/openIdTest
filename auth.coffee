@@ -1,13 +1,20 @@
 openid = require 'openid'
 
 class Auth
-  constructor : (@app, @conf) ->
-    @openid = openid
-    @app.get('/authenticate/:identifier?', (req,res,next)=>@authenticate(req,res,next))
-    @app.get('/verify', (req,res,next)=>@verify(req,res,next))
+  constructor : (@app, @conf, @openid) ->
+    app.get '/authenticate/:identifier?', (req, res, next) => @authenticate(req, res, next)
+    app.get '/verify', (req, res, next) => @verify(req, res, next)
 
+    app.get '/channel.htm*', (req, res, next) -> 
+      cache_expire = 60*60*24*365
+      res.header "Pragma: public" 
+      res.header "Cache-Control: max-age="+cache_expire 
+      res.send('<script src="//connect.facebook.net/en_US/all.js"></script>')
+
+    
+    
   relyingParty : new openid.RelyingParty(
-    'http://crooy.com:3000/verify', # Verification URL (yours)
+    'http://pagekite.crooy.com/verify', # Verification URL (yours)
     null, # Realm (optional, specifies realm for OpenID authentication)
     false, # Use stateless verification
     false, # Strict mode
@@ -31,23 +38,23 @@ class Auth
       else
         res.writeHead(302, { Location: authUrl })
    extensions = [new openid.UserInterface() 
-                new openid.SimpleRegistration({
-                    "nickname" : true, 
-                    "email" : true, 
-                    "fullname" : true,
-                    "dob" : true, 
-                    "gender" : true, 
-                    "postcode" : true,
-                    "country" : true, 
-                    "language" : true, 
-                    "timezone" : true
-                  })
-                new openid.AttributeExchange({
-                    "http://axschema.org/contact/email": "required",
-                    "http://axschema.org/namePerson/friendly": "required",
-                    "http://axschema.org/namePerson": "required"
-                  })
+      new openid.SimpleRegistration({
+          "nickname" : true, 
+          "email" : true, 
+          "fullname" : true,
+          "dob" : true, 
+          "gender" : true, 
+          "postcode" : true,
+          "country" : true, 
+          "language" : true, 
+          "timezone" : true
+        })
+      new openid.AttributeExchange({
+          "http://axschema.org/contact/email": "required",
+          "http://axschema.org/namePerson/friendly": "required",
+          "http://axschema.org/namePerson": "required"
+        })
   ] 
 
 
-exports.setup = (app, conf) ->  new Auth(app, conf)
+exports.setup = (app, conf) ->  new Auth(app, conf, openid)

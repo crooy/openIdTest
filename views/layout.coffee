@@ -11,6 +11,7 @@
 
       script src: ' https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'
       (script src: 'http://html5shim.googlecode.com/svn/trunk/html5.js')  if @isIE?
+      script @javascript if @javascript?
 
   body ->
       div id:'content',class:'container'

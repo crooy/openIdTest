@@ -7,5 +7,5 @@ exports.setup = (express,app) ->
   #app.use express.cookieParser()
   #app.use express.session({secret:'fsdfwer'})
   app.get '/', (req, res) ->
-      res.render 'index'
+      res.render 'index', javascript:app.exposed()
 
