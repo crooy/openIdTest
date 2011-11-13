@@ -1,13 +1,14 @@
 express = require 'express'
 expose = require 'express-expose'
-routing = require './routing' 
-auth = require './auth'
+routing = require './server/routing' 
+auth = require './server/auth'
 conf = require './conf' 
 app = express.createServer()
 
-app.expose appId:conf.fb.appId, 'appId'
 
 routing.setup express, app 
 auth.setup  app, conf
+
+app.expose conf, 'conf'
 
 app.listen 3000 
