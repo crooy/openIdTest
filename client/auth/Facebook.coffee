@@ -1,6 +1,6 @@
 #<< Messagebus
 
-class Facebook # extends Observable
+class Facebook 
   constructor:()->
     #super()
     window.fbAsyncInit = @buildFBOnInit

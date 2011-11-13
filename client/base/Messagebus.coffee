@@ -3,9 +3,10 @@
 class Messagebus extends Observable
   constructor:->
     super()
-  send:(message, type = 'broadcast' ) -> 
-    message.type ?= type
-    @notify(message)
-  process:->
-    @send message for message in @inbox when message.type=='broadcast'
-  
+  send:(message, recipient = '*' ) -> 
+    if recipient == '*'
+      @notify(message)
+    else
+      observer.receive(message, @) for observer in @observers when observer.respondsTo?()
+  process:->process
+    @send message for message in @inbox

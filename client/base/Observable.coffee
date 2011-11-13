@@ -5,5 +5,4 @@ class Observable extends Actor
   notify:(message)->
     observer.receive(message, @ ) for observer in @observers
   subscribe:(actor)->
-    if actor.receive?
-      @observers.push actor
+    @observers.push actor if actor.receive?
