@@ -35,24 +35,24 @@ class Auth
         res.end('Authentication failed')
       else
         res.writeHead(302, { Location: authUrl })
-   extensions = [new openid.UserInterface() 
-      new openid.SimpleRegistration({
-          "nickname" : true, 
-          "email" : true, 
-          "fullname" : true,
-          "dob" : true, 
-          "gender" : true, 
-          "postcode" : true,
-          "country" : true, 
-          "language" : true, 
+   extensions =
+     [
+      new openid.UserInterface(),
+      new openid.SimpleRegistration(
+          "nickname" : true
+          "email" : true
+          "fullname" : true
+          "dob" : true
+          "gender" : true
+          "postcode" : true
+          "country" : true
+          "language" : true
           "timezone" : true
-        })
-      new openid.AttributeExchange({
-          "http://axschema.org/contact/email": "required",
-          "http://axschema.org/namePerson/friendly": "required",
+        ),
+      new openid.AttributeExchange(
+          "http://axschema.org/contact/email": "required"
+          "http://axschema.org/namePerson/friendly": "required"
           "http://axschema.org/namePerson": "required"
-        })
-  ] 
-
-
+        )
+     ]
 exports.setup = (app, conf) ->  new Auth(app, conf, openid)
