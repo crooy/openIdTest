@@ -9,7 +9,7 @@ exports.setup = (express,app) ->
     app.use express.bodyParser()
     app.use express.cookieParser()
     app.use express.session({secret:'fsdfwer'})
-    
+
     app.use express.errorHandler({ dumpExceptions: true, showStack: true })
 
   app.get '/', (req, res) ->

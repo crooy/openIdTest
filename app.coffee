@@ -1,13 +1,14 @@
 express = require 'express'
 expose = require 'express-expose'
 routing = require './server/routing' 
-auth = require './server/auth'
+# auth = require './server/auth'
+facebook = require './server/facebook'
 conf = require './conf' 
 app = express.createServer()
 
 
 routing.setup express, app 
-auth.setup  app, conf
+facebook.setup app, conf
 
 app.expose conf, 'conf'
 

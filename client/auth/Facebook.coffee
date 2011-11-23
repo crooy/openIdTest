@@ -1,8 +1,8 @@
 #<< Messagebus
 
-class Facebook 
+class Facebook extends Passenger
   constructor:()->
-    #super()
+    super()
     window.fbAsyncInit = @buildFBOnInit
     @loadFbjs()
 
