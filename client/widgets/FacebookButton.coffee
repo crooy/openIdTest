@@ -1,4 +1,4 @@
-#<< Widget
+#<< widgets/Widget
 
 class FacebookButton extends Widget
   constructor:(id)->

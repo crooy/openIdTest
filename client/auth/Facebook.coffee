@@ -1,4 +1,4 @@
-#<< Messagebus
+#<< base/Messagebus
 
 class Facebook extends Passenger
   constructor:()->

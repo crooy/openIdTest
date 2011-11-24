@@ -1,4 +1,4 @@
-#<< Actor
+#<< base/Actor
 
 class Observable extends Actor
   observers : []

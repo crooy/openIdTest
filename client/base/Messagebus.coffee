@@ -1,4 +1,4 @@
-#<< Observable
+#<< base/Observable
 
 class Messagebus extends Observable
   constructor:->

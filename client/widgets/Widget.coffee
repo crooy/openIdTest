@@ -1,4 +1,4 @@
-#<< Passenger
+#<< base/Passenger
 
 class Widget extends Passenger
   constructor:->

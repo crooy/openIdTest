@@ -1,4 +1,4 @@
-#<< Messagebus
+#<< base/Messagebus
 
 singletonMessageBus = new Messagebus()
 
