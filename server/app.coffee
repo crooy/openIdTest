@@ -1,4 +1,4 @@
-#<< Facebook, Auth, Routes, Config
+#<<  Routes, Config, base/*, auth/*
 express = require 'express'
 
 app = express.createServer()
